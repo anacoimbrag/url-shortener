@@ -6,6 +6,7 @@ const Home = () => {
   const [shortUrl, setShortUrl] = useState('')
 
   useEffect(() => {
+    console.log('started')
     console.log('mongo', process.env)
   })
 
