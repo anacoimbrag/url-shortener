@@ -5,11 +5,6 @@ const Home = () => {
   const [url, setUrl] = useState('')
   const [shortUrl, setShortUrl] = useState('')
 
-  useEffect(() => {
-    console.log('started')
-    console.log('mongo', process.env)
-  })
-
   const shortenUrl = async () => {
     try {
       const response = await fetch(`/api/short`, {

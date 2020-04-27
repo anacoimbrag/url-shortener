@@ -8,10 +8,8 @@ handler.use(middleware);
 handler.get(async (req, res) => {
     try {
         const urlCode = req.query.hash;
-        console.log('mongodb', process.env.MONGODB_URI)
         console.log(urlCode)
         const item = await req.db.collection(`url`).findOne({ urlCode: urlCode })
-        console.log('item', item)
         res.writeHead(302, { 'Location': item.originalUrl });
         res.end();
     } catch (err) {
