@@ -1,0 +1,13 @@
+{
+    "name": "url-shortener",
+    "version": 2,
+    "env": {
+        "MONGODB_URI": "@mongodb-uri"
+    },
+    "redirects": [
+        {
+            "source": "/:hash",
+            "destination": "/api/short/:hash"
+        }
+    ]
+}
