@@ -7,20 +7,21 @@ const handler = nextConnect();
 handler.use(middleware);
 
 handler.post(async (req, res) => {
-    const { originalUrl } = req.body;
+    const { originalUrl, baseUrl } = req.body;
     try {
         const item = await req.db.collection(`url`).findOne({ originalUrl: originalUrl })
         if (item)
             res.json(item)
         else {
             const hash = shortid.generate()
-            const shortUrl = `http://url-shortner.anacoimbrag.now.sh/${hash}`
+            const shortUrl = `${baseUrl}/${hash}`
             const item = { originalUrl, shortUrl, urlCode: hash, updatedAt: new Date() }
             await req.db.collection('url').insertOne(item)
             res.json(item)
         }
     } catch (err) {
         console.error(`Error gerenrating url`, err)
+        res.status(400).send(err)
     }
 })
 

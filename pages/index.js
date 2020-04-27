@@ -1,9 +1,13 @@
 import Head from 'next/head'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Home = () => {
   const [url, setUrl] = useState('')
   const [shortUrl, setShortUrl] = useState('')
+
+  useEffect(() => {
+    console.log('mongo', process.env)
+  })
 
   const shortenUrl = async () => {
     try {
@@ -11,12 +15,14 @@ const Home = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          originalUrl: url
+          originalUrl: url,
+          baseUrl: window.location.origin
         })
       }).then(res => res.json())
       setShortUrl(response.shortUrl)
       console.log('Url shortened successfully', response)
     } catch (err) {
+      alert(`Some error occured.`)
       console.error('Could not shorten url', err)
     }
   }
@@ -25,7 +31,7 @@ const Home = () => {
     <div className="container">
       <Head>
         <title>Ana Coimbra - URL Shortner</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/img/favicon.ico" />
       </Head>
 
       <main>
@@ -44,7 +50,7 @@ const Home = () => {
         <a
           href="https://nextjs.org/"
           target="_blank"
-          rel="noopener noreferrer">{' '}Next by <img src="/zeit.svg" alt="ZEIT Logo" />
+          rel="noopener noreferrer">{' '}Next by <img src="./img/zeit.svg" alt="ZEIT Logo" />
         </a>
       </footer>
 
