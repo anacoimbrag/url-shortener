@@ -30,7 +30,7 @@ const Home = () => {
         <link rel="icon" href="/img/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="grid">
         <h1 className="title">
           URL Shortener
         </h1>
@@ -108,7 +108,11 @@ const Home = () => {
         .title {
           margin: 0;
           line-height: 1.15;
-          font-size: 4rem;
+          font-size: 3.8rem;
+          margin-bottom: 12px;
+          font-weight: bold;
+          font-family: 'Roboto', sans-serif;
+          text-transform: uppercase;
         }
 
         .title,
@@ -131,10 +135,34 @@ const Home = () => {
           margin-top: 3rem;
         }
 
+        input {
+          min-height: 36px;
+          border: 1.4px solid gray;
+          border-radius: 4px;
+          width: 95%;
+          font-size: 16px;
+          padding: 0 12px;
+        }
+
+        button {
+          width: 50%;
+          height: 40px;
+          background: #120136;
+          color: white;
+          font-size: 14px;
+          text-transform: uppercase;
+          border-radius: 4px;
+          margin-top: 8px;
+          cursor: pointer;
+        }
+
         @media (max-width: 600px) {
           .grid {
             width: 100%;
             flex-direction: column;
+          }
+          .title {
+            font-size: 2.6rem;
           }
         }
       `}</style>
